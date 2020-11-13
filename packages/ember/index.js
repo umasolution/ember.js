@@ -200,12 +200,12 @@ Ember.ApplicationInstance = ApplicationInstance;
 Object.defineProperty(Ember, 'Resolver', {
   get() {
     deprecate(
-      'Using the globals resolver is deprecated. Use the ember-resolver package instead. See https://deprecations.emberjs.com/v3.x#toc_ember-deprecate-globals-resolver',
+      'Using the globals resolver is deprecated. Use the ember-resolver package instead. See https://deprecations.emberjs.com/v3.x/#toc_ember-deprecate-globals-resolver',
       false,
       {
         id: 'ember.globals-resolver',
         until: '4.0.0',
-        url: 'https://deprecations.emberjs.com/v3.x#toc_ember-deprecate-globals-resolver',
+        url: 'https://deprecations.emberjs.com/v3.x/#toc_ember-deprecate-globals-resolver',
       }
     );
 
@@ -657,7 +657,7 @@ if (JQUERY_INTEGRATION && !views.jQueryDisabled) {
         {
           id: 'ember-views.curly-components.jquery-element',
           until: '4.0.0',
-          url: 'https://emberjs.com/deprecations/v3.x#toc_jquery-apis',
+          url: 'https://emberjs.com/deprecations/v3.x/#toc_jquery-apis',
         }
       );
 

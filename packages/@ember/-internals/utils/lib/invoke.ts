@@ -65,7 +65,7 @@ export function tryInvoke(
       since: {
         available: '3.24.0',
       },
-      url: 'https://deprecations.emberjs.com/v3.x#toc_ember-utils-try-invoke',
+      url: 'https://deprecations.emberjs.com/v3.x/#toc_ember-utils-try-invoke',
     }
   );
 

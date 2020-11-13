@@ -120,7 +120,7 @@ export function loc(str: string, formats: any[]): string {
       id: 'ember-string.loc',
       until: '4.0.0',
       for: 'ember-source',
-      url: 'https://deprecations.emberjs.com/v3.x#toc_ember-string-loc',
+      url: 'https://deprecations.emberjs.com/v3.x/#toc_ember-string-loc',
       since: {
         available: '3.24',
       },

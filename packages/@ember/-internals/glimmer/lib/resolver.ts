@@ -124,7 +124,7 @@ if (PARTIALS) {
       {
         id: 'ember-views.partial',
         until: '4.0.0',
-        url: 'https://deprecations.emberjs.com/v3.x#toc_ember-views-partial',
+        url: 'https://deprecations.emberjs.com/v3.x/#toc_ember-views-partial',
         for: 'ember-source',
         since: {
           enabled: '3.15.0-beta.1',

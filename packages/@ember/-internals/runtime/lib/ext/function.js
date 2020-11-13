@@ -85,7 +85,7 @@ if (FUNCTION_PROTOTYPE_EXTENSIONS && ENV.EXTEND_PROTOTYPES.Function) {
           {
             id: 'function-prototype-extensions.property',
             until: '4.0.0',
-            url: 'https://deprecations.emberjs.com/v3.x#toc_function-prototype-extensions-property',
+            url: 'https://deprecations.emberjs.com/v3.x/#toc_function-prototype-extensions-property',
           }
         );
         return computed(...arguments, this);
@@ -130,7 +130,7 @@ if (FUNCTION_PROTOTYPE_EXTENSIONS && ENV.EXTEND_PROTOTYPES.Function) {
           {
             id: 'function-prototype-extensions.observes',
             until: '4.0.0',
-            url: 'https://deprecations.emberjs.com/v3.x#toc_function-prototype-extensions-observes',
+            url: 'https://deprecations.emberjs.com/v3.x/#toc_function-prototype-extensions-observes',
           }
         );
 
@@ -174,7 +174,7 @@ if (FUNCTION_PROTOTYPE_EXTENSIONS && ENV.EXTEND_PROTOTYPES.Function) {
           {
             id: 'function-prototype-extensions.on',
             until: '4.0.0',
-            url: 'https://deprecations.emberjs.com/v3.x#toc_function-prototype-extensions-on',
+            url: 'https://deprecations.emberjs.com/v3.x/#toc_function-prototype-extensions-on',
           }
         );
 

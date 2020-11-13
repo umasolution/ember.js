@@ -103,12 +103,12 @@ if (GLOBALS_RESOLVER) {
 
     init() {
       deprecate(
-        'Using the globals resolver is deprecated. Use the ember-resolver package instead. See https://deprecations.emberjs.com/v3.x#toc_ember-deprecate-globals-resolver',
+        'Using the globals resolver is deprecated. Use the ember-resolver package instead. See https://deprecations.emberjs.com/v3.x/#toc_ember-deprecate-globals-resolver',
         false,
         {
           until: '4.0.0',
           id: 'globals-resolver',
-          url: 'https://deprecations.emberjs.com/v3.x#toc_ember-deprecate-globals-resolver',
+          url: 'https://deprecations.emberjs.com/v3.x/#toc_ember-deprecate-globals-resolver',
         }
       );
 

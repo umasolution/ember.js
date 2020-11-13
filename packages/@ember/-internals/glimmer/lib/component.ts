@@ -751,7 +751,7 @@ const Component = CoreView.extend(
         {
           id: 'ember-views.event-dispatcher.mouseenter-leave-move',
           until: '4.0.0',
-          url: 'https://emberjs.com/deprecations/v3.x#toc_component-mouseenter-leave-move',
+          url: 'https://emberjs.com/deprecations/v3.x/#toc_component-mouseenter-leave-move',
           for: 'ember-source',
           since: {
             enabled: '3.13.0-beta.1',
@@ -764,7 +764,7 @@ const Component = CoreView.extend(
         {
           id: 'ember-views.event-dispatcher.mouseenter-leave-move',
           until: '4.0.0',
-          url: 'https://emberjs.com/deprecations/v3.x#toc_component-mouseenter-leave-move',
+          url: 'https://emberjs.com/deprecations/v3.x/#toc_component-mouseenter-leave-move',
           for: 'ember-source',
           since: {
             enabled: '3.13.0-beta.1',
@@ -777,7 +777,7 @@ const Component = CoreView.extend(
         {
           id: 'ember-views.event-dispatcher.mouseenter-leave-move',
           until: '4.0.0',
-          url: 'https://emberjs.com/deprecations/v3.x#toc_component-mouseenter-leave-move',
+          url: 'https://emberjs.com/deprecations/v3.x/#toc_component-mouseenter-leave-move',
           for: 'ember-source',
           since: {
             enabled: '3.13.0-beta.1',

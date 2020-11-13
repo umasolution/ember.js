@@ -825,7 +825,7 @@ if (ALIAS_METHOD) {
       {
         id: 'object.alias-method',
         until: '4.0.0',
-        url: 'https://emberjs.com/deprecations/v3.x#toc_object-alias-method',
+        url: 'https://emberjs.com/deprecations/v3.x/#toc_object-alias-method',
         for: 'ember-source',
         since: {
           enabled: '3.9.0',
