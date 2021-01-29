@@ -18,6 +18,8 @@ import toBool from './utils/to-bool';
 
 // Setup global context
 
+window._deprecationMap = {};
+
 setGlobalContext({
   scheduleRevalidate() {
     backburner.ensureInstance();
@@ -63,15 +65,31 @@ setGlobalContext({
   },
 
   deprecate(msg: string, test: unknown, options: { id: string }) {
-    if (DEBUG) {
-      let { id } = options;
+    if (!test) {
+      let propertyName = msg.match(/The `(.*?)` property/)?.[1];
 
-      let override = VM_DEPRECATION_OVERRIDES.find((o) => o.id === id);
+      if (propertyName) {
+        let moduleName = QUnit.config.current.module.name;
+        let testName = QUnit.config.current.testName;
+        let key = `${moduleName}: ${testName}`;
 
-      if (!override) throw new Error(`deprecation override for ${id} not found`);
+        let props = window._deprecationMap[key] || [];
 
-      deprecate(override.message ?? msg, Boolean(test), override);
+        props.push(propertyName);
+
+        window._deprecationMap[key] = props;
+      }
     }
+
+    // if (DEBUG) {
+    //   let { id } = options;
+
+    //   let override = VM_DEPRECATION_OVERRIDES.find((o) => o.id === id);
+
+    //   if (!override) throw new Error(`deprecation override for ${id} not found`);
+
+    //   deprecate(override.message ?? msg, Boolean(test), override);
+    // }
   },
 });
 

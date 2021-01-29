@@ -175,7 +175,7 @@ moduleFor(
   'Components test: <Input />',
   class extends InputRenderingTest {
     ['@test a single text field is inserted into the DOM']() {
-      this.render(`<Input @type="text" @value={{value}} />`, { value: 'hello' });
+      this.render(`<Input @type="text" @value={{this.value}} />`, { value: 'hello' });
 
       let id = this.inputID();
 
@@ -214,14 +214,14 @@ moduleFor(
     ['@test dynamic attributes (HTML attribute)']() {
       this.render(
         `
-      <Input @type="text" @value={{value}}
-        disabled={{disabled}}
-        placeholder={{placeholder}}
-        name={{name}}
-        maxlength={{maxlength}}
-        minlength={{minlength}}
-        size={{size}}
-        tabindex={{tabindex}}
+      <Input @type="text" @value={{this.value}}
+        disabled={{this.disabled}}
+        placeholder={{this.placeholder}}
+        name={{this.name}}
+        maxlength={{this.maxlength}}
+        minlength={{this.minlength}}
+        size={{this.size}}
+        tabindex={{this.tabindex}}
       />`,
         {
           value: 'Original value',
@@ -299,14 +299,14 @@ moduleFor(
     ['@test dynamic attributes (named argument)']() {
       this.render(
         `
-      <Input @type="text" @value={{value}}
-        @disabled={{disabled}}
-        @placeholder={{placeholder}}
-        @name={{name}}
-        @maxlength={{maxlength}}
-        @minlength={{minlength}}
-        @size={{size}}
-        @tabindex={{tabindex}}
+      <Input @type="text" @value={{this.value}}
+        @disabled={{this.disabled}}
+        @placeholder={{this.placeholder}}
+        @name={{this.name}}
+        @maxlength={{this.maxlength}}
+        @minlength={{this.minlength}}
+        @size={{this.size}}
+        @tabindex={{this.tabindex}}
       />`,
         {
           value: 'Original value',
@@ -452,7 +452,7 @@ moduleFor(
       // causes an event in Safari.
       runDestroy(this.owner.lookup('event_dispatcher:main'));
 
-      this.render(`<Input @type="text" @value={{value}} />`, { value: 'original' });
+      this.render(`<Input @type="text" @value={{this.value}} />`, { value: 'original' });
 
       let input = this.$input()[0];
 
@@ -535,7 +535,7 @@ moduleFor(
       assert.expect(4);
 
       expectDeprecation(() => {
-        this.render(`<Input @value={{value}} @key-press='foo' />`, {
+        this.render(`<Input @value={{this.value}} @key-press='foo' />`, {
           value: 'initial',
 
           actions: {
@@ -559,7 +559,7 @@ moduleFor(
     ['@test sends an action with `<Input @key-press={{action "foo"}} />` is pressed'](assert) {
       assert.expect(2);
 
-      this.render(`<Input @value={{value}} @key-press={{action 'foo'}} />`, {
+      this.render(`<Input @value={{this.value}} @key-press={{action 'foo'}} />`, {
         value: 'initial',
 
         actions: {
@@ -798,7 +798,7 @@ moduleFor(
   'Components test: <Input /> with dynamic type',
   class extends InputRenderingTest {
     ['@test a bound property can be used to determine type']() {
-      this.render(`<Input @type={{type}} />`, { type: 'password' });
+      this.render(`<Input @type={{this.type}} />`, { type: 'password' });
 
       this.assertAttr('type', 'password');
 
@@ -816,7 +816,7 @@ moduleFor(
     }
 
     ['@test a subexpression can be used to determine type']() {
-      this.render(`<Input @type={{if isTruthy trueType falseType}} />`, {
+      this.render(`<Input @type={{if this.isTruthy this.trueType this.falseType}} />`, {
         isTruthy: true,
         trueType: 'text',
         falseType: 'password',
@@ -839,13 +839,16 @@ moduleFor(
 
     ['@test GH16256 input macro does not modify params in place']() {
       this.registerComponent('my-input', {
-        template: `<Input @type={{inputType}} />`,
+        template: `<Input @type={{this.inputType}} />`,
       });
 
-      this.render(`<MyInput @inputType={{firstType}} /><MyInput @inputType={{secondType}} />`, {
-        firstType: 'password',
-        secondType: 'email',
-      });
+      this.render(
+        `<MyInput @inputType={{this.firstType}} /><MyInput @inputType={{this.secondType}} />`,
+        {
+          firstType: 'password',
+          secondType: 'email',
+        }
+      );
 
       let inputs = this.element.querySelectorAll('input');
       this.assert.equal(inputs.length, 2, 'there are two inputs');
@@ -860,10 +863,10 @@ moduleFor(
   class extends InputRenderingTest {
     ['@test dynamic attributes (HTML attribute)']() {
       this.render(
-        `<Input @type='checkbox' @checked={{checked}}
-          disabled={{disabled}}
-          name={{name}}
-          tabindex={{tabindex}}
+        `<Input @type='checkbox' @checked={{this.checked}}
+          disabled={{this.disabled}}
+          name={{this.name}}
+          tabindex={{this.tabindex}}
         />`,
         {
           disabled: false,
@@ -910,10 +913,10 @@ moduleFor(
 
     ['@test dynamic attributes (named argument)']() {
       this.render(
-        `<Input @type='checkbox' @checked={{checked}}
-          @disabled={{disabled}}
-          @name={{name}}
-          @tabindex={{tabindex}}
+        `<Input @type='checkbox' @checked={{this.checked}}
+          @disabled={{this.disabled}}
+          @name={{this.name}}
+          @tabindex={{this.tabindex}}
         />`,
         {
           disabled: false,
@@ -960,14 +963,14 @@ moduleFor(
 
     ['@test `value` property assertion']() {
       expectAssertion(() => {
-        this.render(`<Input @type="checkbox" @value={{value}} />`, {
+        this.render(`<Input @type="checkbox" @value={{this.value}} />`, {
           value: 'value',
         });
       }, /checkbox.+@value.+not supported.+use.+@checked.+instead/);
     }
 
     ['@test with a bound type']() {
-      this.render(`<Input @type={{inputType}} @checked={{isChecked}} />`, {
+      this.render(`<Input @type={{this.inputType}} @checked={{this.isChecked}} />`, {
         inputType: 'checkbox',
         isChecked: true,
       });
@@ -1053,13 +1056,13 @@ moduleFor(
 
       this.render(
         `
-      <Input @type="text" @value={{value}}
-        disabled={{disabled}}
-        placeholder={{placeholder}}
-        name={{name}}
-        maxlength={{maxlength}}
-        size={{size}}
-        tabindex={{tabindex}}
+      <Input @type="text" @value={{this.value}}
+        disabled={{this.disabled}}
+        placeholder={{this.placeholder}}
+        name={{this.name}}
+        maxlength={{this.maxlength}}
+        size={{this.size}}
+        tabindex={{this.tabindex}}
       />`,
         {
           value: null,
@@ -1122,13 +1125,13 @@ moduleFor(
 
       this.render(
         `
-      <Input @type="text" @value={{value}}
-        @disabled={{disabled}}
-        @placeholder={{placeholder}}
-        @name={{name}}
-        @maxlength={{maxlength}}
-        @size={{size}}
-        @tabindex={{tabindex}}
+      <Input @type="text" @value={{this.value}}
+        @disabled={{this.disabled}}
+        @placeholder={{this.placeholder}}
+        @name={{this.name}}
+        @maxlength={{this.maxlength}}
+        @size={{this.size}}
+        @tabindex={{this.tabindex}}
       />`,
         {
           value: null,

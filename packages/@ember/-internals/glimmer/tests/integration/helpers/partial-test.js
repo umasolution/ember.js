@@ -61,7 +61,7 @@ moduleFor(
 
       expectDeprecation(() => {
         this.render(
-          'This {{partial templates.partialName}} is pretty {{partial nonexistent}}great.',
+          'This {{partial this.templates.partialName}} is pretty {{partial this.nonexistent}}great.',
           {
             templates: { partialName: 'subTemplate' },
           }
@@ -163,7 +163,7 @@ moduleFor(
       expectDeprecation(() => {
         this.render(
           strip`
-        {{#each items as |item|}}
+        {{#each this.items as |item|}}
           {{item.id}}: {{partial 'show-item'}} |
         {{/each}}`,
           {
@@ -195,7 +195,7 @@ moduleFor(
       expectDeprecation(() => {
         this.render(
           strip`
-        {{#each items as |item|}}
+        {{#each this.items as |item|}}
           {{item}}: {{partial 'show-item'}} |
         {{/each}}`,
           {
@@ -232,7 +232,7 @@ moduleFor(
       expectDeprecation(() => {
         this.render(
           strip`
-        {{#each names as |name i|}}
+        {{#each this.names as |name i|}}
           {{i}}: {{partial 'outer-partial'}}
         {{/each}}`,
           {
@@ -263,7 +263,7 @@ moduleFor(
         '_person2-partial',
         strip`
       {{#let 'Ben' as |person2|}}
-        Hi {{person1}} (aged {{age}}) and {{person2}}. {{partial 'person3-partial'}}
+        Hi {{person1}} (aged {{this.age}}) and {{person2}}. {{partial 'person3-partial'}}
       {{/let}}
     `
       );
@@ -358,7 +358,7 @@ moduleFor(
       expectDeprecation(() => {
         this.render(
           strip`
-        {{#with item.thing as |t|}}
+        {{#with this.item.thing as |t|}}
           {{partial t}}
         {{else}}
           Nothing!
@@ -414,11 +414,11 @@ moduleFor(
 
     ['@test partials which contain contextual components']() {
       this.registerComponent('outer-component', {
-        template: '{{yield (hash inner=(component "inner-component" name=name))}}',
+        template: '{{yield (hash inner=(component "inner-component" name=this.name))}}',
       });
 
       this.registerComponent('inner-component', {
-        template: '{{yield (hash name=name)}}',
+        template: '{{yield (hash name=this.name)}}',
       });
 
       this.registerPartial(
@@ -433,7 +433,7 @@ moduleFor(
       expectDeprecation(() => {
         this.render(
           strip`
-        {{#outer-component name=name as |outer|}}
+        {{#outer-component name=this.name as |outer|}}
           {{partial 'some-partial'}}
         {{/outer-component}}`,
           { name: 'Sophie' }
